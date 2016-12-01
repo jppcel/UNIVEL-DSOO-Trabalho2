@@ -20,6 +20,8 @@ public class DefaultView extends JFrame {
 	private CadastroPessoaView cadastroPessoaView;
 	private CadastroProfissionalView cadastroProfissionalView;
 	private LoginView loginView;
+	private ListarPessoaPanel listarPessoaPanel;
+	private CardLayout cardLayout;
 
 	/**
 	 * Launch the application.
@@ -56,7 +58,7 @@ public class DefaultView extends JFrame {
 		mntmCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				
+				switchToPessoa();
 			}
 		});
 		mntmCliente.setFont(new Font("Arial", Font.PLAIN, 11));
@@ -68,10 +70,15 @@ public class DefaultView extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new CardLayout(0, 0));
+		
+		cardLayout = new CardLayout(0, 0);
+		contentPane.setLayout(cardLayout);
 		
 		contentPane.add(new JPanel(), "white");
 		contentPane.add(new CarregandoView(), "carregando");
+		
+		listarPessoaPanel = new ListarPessoaPanel();
+		contentPane.add(listarPessoaPanel, "pessoa");
 		
 		
 		
@@ -80,6 +87,12 @@ public class DefaultView extends JFrame {
 		loginView = new LoginView();
 		
 		
+	}
+	
+	private void switchToPessoa(){
+		cardLayout.show(contentPane, "carregando");
+		listarPessoaPanel.updateTable();
+		cardLayout.show(contentPane, "pessoa");
 	}
 
 }

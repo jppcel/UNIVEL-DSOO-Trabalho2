@@ -157,8 +157,8 @@ public class CadastroProfissionalView extends JFrame {
 		this.profissional = _profissional;
 	}
 	
-	public void getProfissional(Profissional _profissional){
-		this.profissional = _profissional;
+	public Profissional getProfissional(){
+		return this.profissional;
 	}
 	
 	public void updateProfissonal(){
